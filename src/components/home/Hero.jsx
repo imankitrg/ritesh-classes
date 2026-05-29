@@ -1,51 +1,77 @@
-import Image from 'next/image';
+"use client";
+
+import Image from "next/image";
+import { useEffect, useState } from "react";
+
+const banners = [
+  "/home/banner1.webp",
+  "/home/banner1.webp",
+  "/home/banner1.webp",
+  "/home/banner1.webp",
+];
 
 export default function Hero() {
+  const [currentBanner, setCurrentBanner] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentBanner((prev) =>
+        prev === banners.length - 1 ? 0 : prev + 1
+      );
+    }, 4000);
+
+    return () => clearInterval(interval);
+  }, []);
+
   return (
-    <section className="w-full">
-      {/* Hero Image */}
-      <div className="w-full h-[400px] md:h-[500px] lg:h-[600px] relative bg-gray-400">
-        <Image
-          src="/classes.webp"
-          alt="Classes Hero Image"
-          fill
-          className="object-cover"
-          priority
-        />
-      </div>
+    <section className="w-full bg-white pt-6">
 
-      {/* Hero Content */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="flex flex-col md:flex-row justify-between items-start gap-8">
-          {/* Left Side: Text and CTAs */}
-          <div className="flex-1 space-y-6">
-            <div>
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-medium text-gray-900">
-                Headline
-              </h1>
-              <p className="text-xl md:text-2xl text-gray-700 mt-2">
-                sub heading
-              </p>
+      {/* Rounded Banner Container */}
+      <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-4">
+
+        <div className="relative w-full h-[250px] sm:h-[350px] md:h-[500px] lg:h-[650px] overflow-hidden rounded-[15px]">
+
+          {banners.map((banner, index) => (
+            <div
+              key={index}
+              className={`absolute inset-0 transition-opacity duration-1000 ${index === currentBanner
+                ? "opacity-100 z-10"
+                : "opacity-0 z-0"
+                }`}
+            >
+              <Image
+                src={banner}
+                alt={`Banner ${index + 1}`}
+                fill
+                priority
+                className="object-cover"
+              />
             </div>
-            
-            <div className="flex flex-wrap items-center gap-4">
-              <button className="px-8 py-3 bg-gray-200 hover:bg-gray-300 text-gray-800 rounded-full font-medium transition-colors">
-                CTA
-              </button>
-              <button className="px-8 py-3 bg-gray-200 hover:bg-gray-300 text-gray-800 rounded-full font-medium transition-colors">
-                CTA
-              </button>
-            </div>
+          ))}
+
+          {/* Optional Overlay */}
+          <div className="absolute inset-0 bg-black/10 z-20" />
+
+          {/* Slider Dots */}
+          <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-30 flex gap-3">
+            {banners.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => setCurrentBanner(index)}
+                className={`h-2 rounded-full transition-all duration-300 ${currentBanner === index
+                  ? "w-8 bg-white"
+                  : "w-2 bg-white/60"
+                  }`}
+              />
+            ))}
           </div>
 
-          {/* Right Side: Paragraph */}
-          <div className="flex-1 md:mt-4">
-            <p className="text-gray-700 text-lg md:text-xl leading-relaxed">
-              Use the viewport and onViewportChange props to control the map's viewport externally. This is useful when you need to sync the map state with your application or respond to viewport changes.
-            </p>
-          </div>
         </div>
+
       </div>
+
+      {/* Bottom Info Section */}
+      {/* for now we are not using this,i will use this later  */}
     </section>
   );
 }

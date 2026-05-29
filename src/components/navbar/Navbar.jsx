@@ -1,39 +1,72 @@
 import Link from "next/link";
+import Image from "next/image";
 
 export default function Navbar() {
   return (
-    <nav className="w-full bg-white border-b border-gray-100 py-4 px-4 sm:px-8">
-      <div className="max-w-7xl mx-auto flex items-center justify-between">
-        
-        {/* Logo Placeholder */}
-        <div className="flex-shrink-0">
-          <Link href="/">
-            <div className="w-24 h-10 bg-gray-200 rounded-full hover:bg-gray-300 transition-colors"></div>
+    <nav className="sticky top-0 z-50 w-full bg-white/90 backdrop-blur-md border-b border-gray-100">
+      <div className="max-w-7xl mx-auto px-7 sm:px-8 lg:px-6 p-5 flex items-center justify-between">
+
+        {/* Logo */}
+        <Link href="/" className="flex items-center gap-3">
+          <div className="w-10 h-10 rounded-xl bg-black text-white flex items-center justify-center font-semibold text-lg">
+            <Image
+              width={50}
+              height={50}
+              src="/logo.webp" alt="logo" />
+          </div>
+
+          <div>
+            <h2 className="text-lg font-semibold text-gray-900">
+              Ritesh
+            </h2>
+            <p className="text-xs text-gray-500 -mt-1">
+              Academy
+            </p>
+          </div>
+        </Link>
+
+        {/* Nav Links */}
+        <div className="hidden md:flex items-center gap-8">
+          <Link
+            href="/"
+            className="text-gray-600 hover:text-black transition-colors text-sm font-medium"
+          >
+            Home
+          </Link>
+
+          <Link
+            href="/courses"
+            className="text-gray-600 hover:text-black transition-colors text-sm font-medium"
+          >
+            Courses
+          </Link>
+
+          <Link
+            href="/teachers"
+            className="text-gray-600 hover:text-black transition-colors text-sm font-medium"
+          >
+            Teachers
+          </Link>
+
+          <Link
+            href="/about"
+            className="text-gray-600 hover:text-black transition-colors text-sm font-medium"
+          >
+            About
+          </Link>
+
+          <Link
+            href="/contact"
+            className="text-gray-600 hover:text-black transition-colors text-sm font-medium"
+          >
+            Contact
           </Link>
         </div>
 
-        {/* Center Navigation Links */}
-        <div className="hidden md:flex items-center justify-center gap-4 flex-1">
-          <Link href="/page1" className="w-20 h-10 bg-gray-200 rounded-full hover:bg-gray-300 transition-colors block"></Link>
-          <Link href="/page2" className="w-20 h-10 bg-gray-200 rounded-full hover:bg-gray-300 transition-colors block"></Link>
-          <Link href="/page3" className="w-20 h-10 bg-gray-200 rounded-full hover:bg-gray-300 transition-colors block"></Link>
-          <Link href="/page4" className="w-20 h-10 bg-gray-200 rounded-full hover:bg-gray-300 transition-colors block"></Link>
-        </div>
-
-        {/* Profile Icon */}
-        <div className="flex-shrink-0 flex justify-end">
-          <button className="w-10 h-10 rounded-full border-2 border-gray-800 flex items-center justify-center overflow-hidden hover:bg-gray-100 transition-colors">
-            <svg 
-              xmlns="http://www.w3.org/2000/svg" 
-              viewBox="0 0 24 24" 
-              fill="currentColor" 
-              className="w-8 h-8 text-gray-800 mt-2"
-            >
-              <path fillRule="evenodd" d="M7.5 6a4.5 4.5 0 119 0 4.5 4.5 0 01-9 0zM3.751 20.105a8.25 8.25 0 0116.498 0 .75.75 0 01-.437.695A18.683 18.683 0 0112 22.5c-2.786 0-5.433-.608-7.812-1.7a.75.75 0 01-.437-.695z" clipRule="evenodd" />
-            </svg>
-          </button>
-        </div>
-        
+        {/* CTA */}
+        <button className="px-5 py-2.5 rounded-full bg-black text-white text-sm font-medium hover:bg-gray-800 transition-colors">
+          Join Now
+        </button>
       </div>
     </nav>
   );
