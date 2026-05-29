@@ -6,21 +6,21 @@ import { Download, Eye, BookOpen } from "lucide-react";
 const studyMaterials = [
   {
     id: 1,
-    title: "Class 10 Physics Master Guide",
+    title: "Class 10 complete  Master Guide",
     description: "Complete theory, chapter-wise MCQs, and previous year questions.",
     tag: "Board Exams",
   },
   {
     id: 2,
-    title: "JEE Advanced Practice Papers",
-    description: "15 full-length mock tests with detailed video solutions.",
-    tag: "JEE Target",
+    title: "Complete FYJC  SYJC master guide",
+    description: "Comprehensive study materials for FYJC & SYJC students.",
+    tag: "11th & 12th ",
   },
   {
     id: 3,
-    title: "NEET Biology NCERT Extract",
-    description: "Line-by-line NCERT highlights and assertion-reasoning questions.",
-    tag: "NEET Target",
+    title: "resources for degree students",
+    description: "Comprehensive study materials for degree students.",
+    tag: "Degree students",
   }
 ];
 
@@ -43,22 +43,22 @@ const itemVariants = {
 
 export default function StudyBooks() {
   return (
-    <section className="py-24 bg-gray-50/50">
+    <section className="py-24 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
+
         {/* Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
           <div className="max-w-2xl">
-            <motion.h2 
+            <motion.h2
               initial={{ opacity: 0, y: -20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               className="text-3xl md:text-4xl font-bold text-gray-900 mb-4 flex items-center"
             >
               <BookOpen className="w-8 h-8 text-indigo-600 mr-3" />
-              Premium Study Material
+              <p className="text-sm font-semibold tracking-[0.2em] text-gray-500 uppercase mb-3">Premium Study Material</p>
             </motion.h2>
-            <motion.p 
+            <motion.p
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
@@ -68,20 +68,20 @@ export default function StudyBooks() {
               Get access to our meticulously crafted study resources designed by top educators to guarantee your success.
             </motion.p>
           </div>
-          
-          <motion.div 
+
+          <motion.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
           >
-             <button className="px-6 py-3 bg-white border border-gray-200 text-gray-700 hover:bg-gray-50 rounded-full font-medium transition-colors shadow-sm flex items-center">
-                View All Resources
-             </button>
+            <button className="px-6 py-3 bg-white border border-gray-200 text-gray-700 hover:bg-gray-50 rounded-full font-medium transition-colors shadow-sm flex items-center">
+              View All Resources
+            </button>
           </motion.div>
         </div>
 
         {/* Books Grid */}
-        <motion.div 
+        <motion.div
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
@@ -89,7 +89,7 @@ export default function StudyBooks() {
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10"
         >
           {studyMaterials.map((book) => (
-            <motion.div 
+            <motion.div
               key={book.id}
               variants={itemVariants}
               className="group relative bg-white rounded-3xl p-6 shadow-sm hover:shadow-2xl transition-all duration-500 border border-gray-100 flex flex-col h-full"
@@ -97,17 +97,17 @@ export default function StudyBooks() {
               {/* Book Cover (Using provided image as placeholder) */}
               <div className="relative w-[80%] mx-auto aspect-[3/4] rounded-lg overflow-hidden shadow-lg group-hover:-translate-y-4 group-hover:shadow-2xl transition-all duration-500 mb-8 border border-gray-200">
                 <Image
-                  src="/classes.webp"
+                  src="/home/banner.webp"
                   alt={book.title}
                   fill
                   className="object-cover group-hover:scale-105 transition-transform duration-700"
                 />
-                
+
                 {/* Overlay Badge */}
                 <div className="absolute top-4 right-0 bg-indigo-600 text-white text-xs font-bold px-3 py-1 rounded-l-full shadow-md z-10">
                   {book.tag}
                 </div>
-                
+
                 {/* Decorative spine gradient */}
                 <div className="absolute left-0 top-0 bottom-0 w-4 bg-gradient-to-r from-black/20 to-transparent z-10"></div>
               </div>

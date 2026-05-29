@@ -54,6 +54,9 @@ export default function TrustSection() {
   return (
     <section className="w-full bg-white py-14">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <p className="text-sm font-semibold tracking-[0.2em] text-gray-500 uppercase mb-3">
+          Why Parents Trust Ritesh Classes?
+        </p>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
 

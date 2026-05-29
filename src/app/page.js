@@ -16,7 +16,7 @@ export default function Home() {
       <Hero />
       <TrustSection />
       <CoursesSection />
-      <ResultsSection />
+      {/* <ResultsSection /> */}
       <WhyChooseUs />
       <TeachersSection />
       <StudyBooks />

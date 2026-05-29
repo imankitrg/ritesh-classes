@@ -9,28 +9,28 @@ const teachers = [
     name: "Ritesh Kumar",
     subject: "Mathematics",
     qualification: "M.Sc Maths, B.Ed",
-    experience: "12 Years Experience",
+    experience: "2 Years Experience",
   },
   {
     id: 2,
     name: "Anjali Sharma",
-    subject: "Physics",
-    qualification: "M.Tech, IIT Delhi",
-    experience: "8 Years Experience",
+    subject: "English",
+    qualification: "BA English Hons ",
+    experience: "2 Years Experience",
   },
   {
     id: 3,
     name: "Vikram Singh",
-    subject: "Chemistry",
-    qualification: "Ph.D. in Chemistry",
-    experience: "15 Years Experience",
+    subject: "Accountancy",
+    qualification: "M.Com B.Ed ",
+    experience: "2 Years Experience",
   },
   {
     id: 4,
     name: "Pooja Verma",
-    subject: "Biology",
-    qualification: "M.Sc Zoology",
-    experience: "10 Years Experience",
+    subject: "Hindi ",
+    qualification: "MA hindi ",
+    experience: "2 Years Experience",
   }
 ];
 
@@ -55,18 +55,18 @@ export default function TeachersSection() {
   return (
     <section className="py-24 bg-white border-t border-gray-100">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
+
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <motion.h2 
+          <motion.h2
             initial={{ opacity: 0, y: -20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-3xl md:text-4xl font-bold text-gray-900 mb-4"
+            className="text-sm font-semibold tracking-[0.2em] text-gray-500 uppercase mb-3"
           >
             Our Expert Faculty
           </motion.h2>
-          <motion.p 
+          <motion.p
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
@@ -78,7 +78,7 @@ export default function TeachersSection() {
         </div>
 
         {/* Teachers Grid */}
-        <motion.div 
+        <motion.div
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
@@ -86,7 +86,7 @@ export default function TeachersSection() {
           className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8"
         >
           {teachers.map((teacher) => (
-            <motion.div 
+            <motion.div
               key={teacher.id}
               variants={itemVariants}
               whileHover={{ y: -8 }}
@@ -95,7 +95,7 @@ export default function TeachersSection() {
               {/* Teacher Photo */}
               <div className="relative w-full h-64 bg-gray-200 overflow-hidden">
                 <Image
-                  src="/classes.webp"
+                  src="/home/banner.webp"
                   alt={`Photo of ${teacher.name}`}
                   fill
                   className="object-cover group-hover:scale-105 transition-transform duration-500"
@@ -118,7 +118,7 @@ export default function TeachersSection() {
                     <p className="font-medium text-gray-900">{teacher.qualification}</p>
                   </div>
                 </div>
-                
+
                 <div className="flex items-start text-gray-600">
                   <Briefcase className="w-5 h-5 mr-3 mt-0.5 flex-shrink-0 text-emerald-500" />
                   <div>
