@@ -1,6 +1,19 @@
 import Link from "next/link";
 import Image from "next/image";
 
+
+
+
+const courses = [
+  { name: "8th Class", slug: "8th-class" },
+  { name: "9th Class", slug: "9th-class" },
+  { name: "SSC Board", slug: "ssc-board" },
+  { name: "FYJC", slug: "fyjc" },
+  { name: "SYJC", slug: "syjc" },
+  { name: "Under Graduate", slug: "under-graduate" },
+  { name: "Post Graduate", slug: "post-graduate" },
+];
+
 export default function Navbar() {
   return (
     <nav className="sticky top-0 z-50 w-full bg-white/90 backdrop-blur-md border-b border-gray-100">
@@ -35,31 +48,44 @@ export default function Navbar() {
           </Link>
 
           <Link
-            href="/courses"
-            className="text-gray-600 hover:text-black transition-colors text-sm font-medium"
+            href="/Course"
+            className="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-50"
           >
             Courses
           </Link>
 
           <Link
-            href="/teachers"
-            className="text-gray-600 hover:text-black transition-colors text-sm font-medium"
-          >
-            Teachers
-          </Link>
-
-          <Link
-            href="/about"
+            href="/About"
             className="text-gray-600 hover:text-black transition-colors text-sm font-medium"
           >
             About
           </Link>
 
           <Link
-            href="/contact"
+            href="/Admission"
+            className="text-gray-600 hover:text-black transition-colors text-sm font-medium"
+          >
+            Admission
+          </Link>
+
+          <Link
+            href="/Contact"
             className="text-gray-600 hover:text-black transition-colors text-sm font-medium"
           >
             Contact
+          </Link>
+          <Link
+            href="/Result"
+            className="text-gray-600 hover:text-black transition-colors text-sm font-medium"
+          >
+            Result
+          </Link>
+
+          <Link
+            href="/Gallery"
+            className="text-gray-600 hover:text-black transition-colors text-sm font-medium"
+          >
+            Gallery
           </Link>
         </div>
 

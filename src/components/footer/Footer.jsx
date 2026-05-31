@@ -1,4 +1,6 @@
 import Link from "next/link";
+import Image from "next/image";
+
 
 const FacebookIcon = ({ className }) => (
   <svg className={className} fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -48,33 +50,50 @@ export default function Footer() {
   return (
     <footer className="bg-gray-900 pt-20 pb-10 border-t border-gray-800">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
+
         {/* Top Section */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
-          
+
           {/* Column 1: Brand */}
           <div className="space-y-6">
-            <Link href="/" className="inline-block">
-              <div className="w-32 h-10 bg-white/10 rounded-full flex items-center justify-center border border-white/20">
-                <span className="text-white font-bold text-xl tracking-wider">LOGO</span>
+            <Link href="/" className="flex items-center gap-3">
+              <div className="w-10 h-10 rounded-xl bg-black text-white flex items-center justify-center font-semibold text-lg">
+                <Image
+                  width={50}
+                  height={50}
+                  src="/logo.webp" alt="logo" />
+              </div>
+
+              <div>
+                <h2 className="text-lg font-semibold text-white">
+                  Ritesh
+                </h2>
+                <p className="text-xs text-white -mt-1">
+                  Academy
+                </p>
               </div>
             </Link>
             <p className="text-gray-400 text-sm leading-relaxed">
               Empowering students to achieve academic excellence through expert guidance, comprehensive study materials, and state-of-the-art facilities.
             </p>
             <div className="flex gap-4">
-              <a href="#" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-gray-400 hover:bg-indigo-600 hover:text-white transition-colors">
+
+              <Link href="/" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-gray-400 hover:bg-indigo-600 hover:text-white transition-colors">
                 <FacebookIcon className="w-5 h-5" />
-              </a>
-              <a href="#" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-gray-400 hover:bg-indigo-600 hover:text-white transition-colors">
+              </Link>
+
+              <Link href="/" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-gray-400 hover:bg-indigo-600 hover:text-white transition-colors">
                 <TwitterIcon className="w-5 h-5" />
-              </a>
-              <a href="#" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-gray-400 hover:bg-indigo-600 hover:text-white transition-colors">
+              </Link>
+
+              <Link href="htrps://instagram.com/riteshacademy_111" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-gray-400 hover:bg-indigo-600 hover:text-white transition-colors">
                 <InstagramIcon className="w-5 h-5" />
-              </a>
-              <a href="#" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-gray-400 hover:bg-indigo-600 hover:text-white transition-colors">
+              </Link>
+
+              <Link href="/" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-gray-400 hover:bg-indigo-600 hover:text-white transition-colors">
                 <LinkedinIcon className="w-5 h-5" />
-              </a>
+              </Link>
+
             </div>
           </div>
 
@@ -83,10 +102,12 @@ export default function Footer() {
             <h4 className="text-white font-bold text-lg mb-6">Quick Links</h4>
             <ul className="space-y-4">
               <li><Link href="/" className="text-gray-400 hover:text-indigo-400 transition-colors text-sm">Home</Link></li>
-              <li><Link href="/about" className="text-gray-400 hover:text-indigo-400 transition-colors text-sm">About Us</Link></li>
-              <li><Link href="/courses" className="text-gray-400 hover:text-indigo-400 transition-colors text-sm">Our Courses</Link></li>
-              <li><Link href="/faculty" className="text-gray-400 hover:text-indigo-400 transition-colors text-sm">Expert Faculty</Link></li>
-              <li><Link href="/contact" className="text-gray-400 hover:text-indigo-400 transition-colors text-sm">Contact Us</Link></li>
+              <li><Link href="/About" className="text-gray-400 hover:text-indigo-400 transition-colors text-sm">About Us</Link></li>
+              <li><Link href="/Course" className="text-gray-400 hover:text-indigo-400 transition-colors text-sm">Our Courses</Link></li>
+              <li><Link href="/Result" className="text-gray-400 hover:text-indigo-400 transition-colors text-sm">Result</Link></li>
+              <li><Link href="/Gallery" className="text-gray-400 hover:text-indigo-400 transition-colors text-sm">Gallery</Link></li>
+              <li><Link href="/Admission" className="text-gray-400 hover:text-indigo-400 transition-colors text-sm">Admission</Link></li>
+              <li><Link href="/Contact" className="text-gray-400 hover:text-indigo-400 transition-colors text-sm">Contact Us</Link></li>
             </ul>
           </div>
 
@@ -94,31 +115,91 @@ export default function Footer() {
           <div>
             <h4 className="text-white font-bold text-lg mb-6">Popular Courses</h4>
             <ul className="space-y-4">
-              <li><Link href="/courses/jee" className="text-gray-400 hover:text-indigo-400 transition-colors text-sm">JEE Preparation</Link></li>
-              <li><Link href="/courses/neet" className="text-gray-400 hover:text-indigo-400 transition-colors text-sm">NEET Target Batch</Link></li>
-              <li><Link href="/courses/boards" className="text-gray-400 hover:text-indigo-400 transition-colors text-sm">Class 10 & 12 Boards</Link></li>
-              <li><Link href="/courses/foundation" className="text-gray-400 hover:text-indigo-400 transition-colors text-sm">Foundation Courses</Link></li>
-              <li><Link href="/courses/spoken-english" className="text-gray-400 hover:text-indigo-400 transition-colors text-sm">Spoken English</Link></li>
+              <li><Link href="/Course" className="text-gray-400 hover:text-indigo-400 transition-colors text-sm">for 8th students</Link></li>
+              <li><Link href="/Course" className="text-gray-400 hover:text-indigo-400 transition-colors text-sm">for 9th students</Link></li>
+              <li><Link href="/Course" className="text-gray-400 hover:text-indigo-400 transition-colors text-sm">for 10th students</Link></li>
+              <li><Link href="/Course" className="text-gray-400 hover:text-indigo-400 transition-colors text-sm">for 11th students</Link></li>
+              <li><Link href="/Course" className="text-gray-400 hover:text-indigo-400 transition-colors text-sm">for 12th students</Link></li>
+              <li><Link href="/Course" className="text-gray-400 hover:text-indigo-400 transition-colors text-sm">for degree students</Link></li>
+
             </ul>
           </div>
 
           {/* Column 4: Contact Info */}
           <div>
-            <h4 className="text-white font-bold text-lg mb-6">Get In Touch</h4>
-            <ul className="space-y-4">
+            <h4 className="text-white font-bold text-lg mb-6">
+              Get In Touch
+            </h4>
+
+            <ul className="space-y-5">
+
+              {/* Address */}
               <li className="flex items-start text-gray-400 text-sm">
-                <MapPinIcon className="w-5 h-5 text-indigo-500 mr-3 mt-0.5 flex-shrink-0" />
-                <span>123 Education Hub, Sector 62,<br />Noida, UP 201309</span>
+                <MapPinIcon className="w-5 h-5 text-indigo-500 mr-3 mt-1 flex-shrink-0" />
+                <span className="leading-relaxed">
+                  Room No. 1, Mahakali Caves Road,
+                  Opp. Sai Baba Mandir, Near Bowlekar Ground,
+                  MMRDA Colony, Andheri East,
+                  Mumbai, Maharashtra 400093
+                </span>
               </li>
-              <li className="flex items-center text-gray-400 text-sm">
-                <PhoneIcon className="w-5 h-5 text-indigo-500 mr-3 flex-shrink-0" />
-                <span>+91 98765 43210</span>
+
+              {/* Phone */}
+              <li className="flex items-start text-gray-400 text-sm">
+                <PhoneIcon className="w-5 h-5 text-indigo-500 mr-3 mt-0.5 flex-shrink-0" />
+                <div className="space-y-1">
+                  <a
+                    href="tel:+918104837019"
+                    className="hover:text-indigo-400 transition-colors"
+                  >
+                    +91 81048 37019
+                  </a>
+                  <br />
+                  <a
+                    href="tel:+919821767980"
+                    className="hover:text-indigo-400 transition-colors"
+                  >
+                    +91 98217 67980
+                  </a>
+                </div>
               </li>
+
+              {/* Email */}
               <li className="flex items-center text-gray-400 text-sm">
                 <MailIcon className="w-5 h-5 text-indigo-500 mr-3 flex-shrink-0" />
-                <span>info@riteshclasses.com</span>
+                <a
+                  href="mailto:riteshacademy920@gmail.com"
+                  className="hover:text-indigo-400 transition-colors"
+                >
+                  riteshacademy920@gmail.com
+                </a>
               </li>
             </ul>
+
+            {/* Location Preview */}
+            <div className="mt-6 overflow-hidden rounded-xl border border-gray-800">
+              <a
+                href="https://www.google.com/maps/place/Ritesh+Academy/@19.1333707,72.8732921,17z/data=!3m1!4b1!4m6!3m5!1s0x3be7b7671dff8d49:0xc07641e89050fa4c!8m2!3d19.1333707!4d72.8732921!16s%2Fg%2F11mst_hfxy?entry=ttu&g_ep=EgoyMDI2MDUyNy4wIKXMDSoASAFQAw%3D%3D"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <img
+                  src="/ramap.webp"
+                  alt="Ritesh Academy Location"
+                  className="w-full h-40 object-cover transition-transform duration-300 hover:scale-105"
+                />
+              </a>
+            </div>
+
+            {/* Map Button */}
+            <a
+              href="https://www.google.com/maps/place/Ritesh+Academy/@19.1333707,72.8732921,17z/data=!3m1!4b1!4m6!3m5!1s0x3be7b7671dff8d49:0xc07641e89050fa4c!8m2!3d19.1333707!4d72.8732921!16s%2Fg%2F11mst_hfxy?entry=ttu&g_ep=EgoyMDI2MDUyNy4wIKXMDSoASAFQAw%3D%3D"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-3 inline-flex items-center text-sm text-indigo-400 hover:text-indigo-300 transition-colors"
+            >
+              View on Google Maps →
+            </a>
           </div>
 
         </div>

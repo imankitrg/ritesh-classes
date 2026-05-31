@@ -1,6 +1,19 @@
 "use client";
 
 import { motion } from "framer-motion";
+// import {
+//   GraduationCap,
+//   BookOpen,
+//   Calculator,
+//   ArrowRight,
+//   CalendarDays,
+//   BadgeCheck,
+// } from "lucide-react";
+
+import Image from "next/image";
+import Link from "next/link";
+import { courses1 } from "@/data/courses";
+
 import {
   GraduationCap,
   BookOpen,
@@ -10,54 +23,59 @@ import {
   BadgeCheck,
 } from "lucide-react";
 
-import Image from "next/image";
+const iconMap = {
+  graduation: GraduationCap,
+  book: BookOpen,
+  calculator: Calculator,
+  arrowRight: ArrowRight,
+  calendarDays: CalendarDays,
+  badgeCheck: BadgeCheck,
+};
+const icon = iconMap[courses1.icon];
 
-const courses = [
-  {
-    title: "8th To 10th Foundation",
-    icon: <GraduationCap className="w-8 h-8 text-black" />,
-    image: "/home/banner1.webp",
-    duration: "Academic Program",
-    subjects: "Maths, Science & English",
-    description:
-      "Strong academic foundation with weekly tests, mentorship, doubt solving, and board-focused preparation.",
-    batches: "Morning & Evening Batches",
-    color: "bg-blue-50",
-  },
-  {
-    title: "10th SSC Board",
-    icon: <BookOpen className="w-8 h-8 text-black" />,
-    image: "/home/ssc.webp",
-    duration: "Board Focused",
-    subjects: "All SSC Subjects",
-    description:
-      "Complete SSC preparation with prelims, revision lectures, paper solving, and exam guidance.",
-    batches: "Limited Student Batch",
-    color: "bg-emerald-50",
-  },
-  {
-    title: "FYJC & SYJC",
-    icon: <Calculator className="w-8 h-8 text-black" />,
-    image: "/home/ssc.webp",
-    duration: "Junior College",
-    subjects: "Commerce & Science",
-    description:
-      "Concept-based teaching with personal attention, regular tests, and career guidance sessions.",
-    batches: "Weekly Practice Sessions",
-    color: "bg-purple-50",
-  },
-  {
-    title: "Degree Section",
-    icon: <GraduationCap className="w-8 h-8 text-black" />,
-    image: "/home/mainmu.webp",
-    duration: "University Support",
-    subjects: "Focused Academic Guidance",
-    description:
-      "Professional mentorship and exam-oriented learning environment for degree students.",
-    batches: "Flexible Timings",
-    color: "bg-orange-50",
-  },
-];
+
+// const courses = [
+//   {
+//     title: "8th To 10th Foundation",
+//     icon: <Icon className="w-8 h-8 text-indigo-600" />,
+//     image: "/home/banner1.webp",
+//     duration: "Academic Program",
+//     subjects: "Maths, Science & English",
+//     description:
+//       "Strong academic foundation with weekly tests, mentorship, doubt solving, and board-focused preparation.",
+//     batches: "Morning & Evening Batches",
+//   },
+//   {
+//     title: "10th SSC Board",
+//     icon: <BookOpen className="w-8 h-8 text-indigo-600" />,
+//     image: "/home/ssc.webp",
+//     duration: "Board Focused",
+//     subjects: "All SSC Subjects",
+//     description:
+//       "Complete SSC preparation with prelims, revision lectures, paper solving, and exam guidance.",
+//     batches: "Limited Student Batch",
+//   },
+//   {
+//     title: "FYJC & SYJC",
+//     icon: <Calculator className="w-8 h-8 text-indigo-600" />,
+//     image: "/home/ssc.webp",
+//     duration: "Junior College",
+//     subjects: "Commerce & Science",
+//     description:
+//       "Concept-based teaching with personal attention, regular tests, and career guidance sessions.",
+//     batches: "Weekly Practice Sessions",
+//   },
+//   {
+//     title: "Degree Section",
+//     icon: <GraduationCap className="w-8 h-8 text-indigo-600" />,
+//     image: "/home/mainmu.webp",
+//     duration: "University Support",
+//     subjects: "Focused Academic Guidance",
+//     description:
+//       "Professional mentorship and exam-oriented learning environment for degree students.",
+//     batches: "Flexible Timings",
+//   },
+// ];
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -88,7 +106,7 @@ export default function CoursesSection() {
   return (
     <section className="py-24 bg-white overflow-hidden">
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-10">
 
         {/* HEADER */}
         <div className="max-w-3xl mb-16">
@@ -115,176 +133,129 @@ export default function CoursesSection() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
-          className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6"
+          className="grid grid-cols-1 md:grid-cols-2 gap-6"
         >
 
-          {courses.map((course, index) => (
-
+          {courses1.map((course, index) => (
             <motion.div
               key={index}
               variants={itemVariants}
-              className="group [perspective:2000px]"
+              className="group"
             >
+              <div className="flex h-full flex-col overflow-hidden rounded-3xl border border-gray-200 bg-white shadow-sm transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl">
 
-              {/* FLIP CARD */}
-              <div className="relative h-[520px] w-full rounded-[32px] transition-all duration-700 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]">
+                {/* Image */}
+                <div className="relative h-56 overflow-hidden">
+                  <Image
+                    src={course.image}
+                    alt={course.title}
+                    fill
+                    className="object-cover transition-transform duration-700 group-hover:scale-105"
+                  />
+                </div>
 
-                {/* FRONT */}
-                <div className="absolute inset-0 rounded-[32px] bg-gray-50 border border-gray-200 p-7 [backface-visibility:hidden] flex flex-col">
+                {/* Content */}
+                <div className="flex flex-1 flex-col p-6">
 
-                  {/* TOP ICON */}
-                  <div className="w-24 h-24 rounded-full overflow-hidden bg-emerald-400 flex items-center justify-center mb-8">
+                  {/* Icon + Title */}
+                  <div className="flex items-start gap-4">
+                    <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-indigo-50">
+                      {course.icon}
+                    </div>
 
-                    <Image
-                      src={course.image}
-                      alt={course.title}
-                      width={96}
-                      height={96}
-                      className="object-cover w-full h-full"
-                    />
+                    <div>
+                      <h3 className="text-xl font-bold text-gray-900">
+                        {course.title}
+                      </h3>
 
+                      <p className="mt-1 text-sm text-gray-500">
+                        {course.subjects}
+                      </p>
+                    </div>
                   </div>
 
-                  {/* TITLE */}
-                  <h3 className="text-2xl font-semibold text-gray-900 leading-snug">
-                    {course.title}
-                  </h3>
-
-                  {/* SUBJECT */}
-                  <p className="text-gray-600 mt-4 leading-relaxed">
-                    {course.subjects}
+                  {/* Description */}
+                  <p className="mt-5 text-sm leading-relaxed text-gray-600">
+                    {course.description}
                   </p>
 
-                  {/* INFO */}
-                  <div className="space-y-4 mt-8">
+                  {/* Info */}
+                  <div className="mt-6 space-y-4">
 
                     <div className="flex items-start gap-3">
-
-                      <div className="w-10 h-10 rounded-2xl bg-white border border-gray-200 flex items-center justify-center">
-                        <CalendarDays className="w-5 h-5 text-gray-700" />
+                      <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-gray-100">
+                        <CalendarDays className="h-5 w-5 text-gray-700" />
                       </div>
 
                       <div>
-                        <p className="text-sm text-gray-500">
-                          Duration
+                        <p className="text-xs uppercase tracking-wide text-gray-500">
+                          Program Type
                         </p>
 
                         <p className="font-medium text-gray-900">
                           {course.duration}
                         </p>
                       </div>
-
                     </div>
 
                     <div className="flex items-start gap-3">
-
-                      <div className="w-10 h-10 rounded-2xl bg-white border border-gray-200 flex items-center justify-center">
-                        <BadgeCheck className="w-5 h-5 text-gray-700" />
+                      <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-gray-100">
+                        <BadgeCheck className="h-5 w-5 text-gray-700" />
                       </div>
 
                       <div>
-                        <p className="text-sm text-gray-500">
-                          Batch Type
+                        <p className="text-xs uppercase tracking-wide text-gray-500">
+                          Batch Details
                         </p>
 
                         <p className="font-medium text-gray-900">
                           {course.batches}
                         </p>
                       </div>
-
                     </div>
 
                   </div>
 
-                  {/* BUTTONS */}
-                  <div className="mt-auto flex gap-3 pt-8">
+                  {/* Features */}
+                  <div className="mt-6 space-y-3">
 
-                    <button className="flex-1 py-3 rounded-full bg-black text-white font-medium hover:bg-gray-800 transition-colors">
-                      Enroll
+                    <div className="flex items-center gap-2 text-sm text-gray-700">
+                      <div className="h-2 w-2 shrink-0 rounded-full bg-emerald-500" />
+                      Weekly Tests & Assessments
+                    </div>
+
+                    <div className="flex items-center gap-2 text-sm text-gray-700">
+                      <div className="h-2 w-2 shrink-0 rounded-full bg-emerald-500" />
+                      Personal Mentorship
+                    </div>
+
+                    <div className="flex items-center gap-2 text-sm text-gray-700">
+                      <div className="h-2 w-2 shrink-0 rounded-full bg-emerald-500" />
+                      Study Materials & Notes
+                    </div>
+
+                  </div>
+
+                  {/* CTA — pushed to bottom with mt-auto */}
+                  <div className="mt-auto flex gap-3 pt-6">
+
+                    <button className="flex-1 rounded-xl bg-black py-3 text-sm font-semibold text-white transition-all duration-300 hover:bg-indigo-600 active:scale-95">
+                      <Link href="/Admission">
+                        Enroll Now
+                      </Link>
                     </button>
 
-                    <button className="flex-1 py-3 rounded-full bg-gray-200 hover:bg-gray-300 text-gray-900 font-medium transition-colors">
-                      Demo
+                    <button className="flex items-center justify-center gap-2 rounded-xl border border-gray-300 px-4 py-3 text-sm font-semibold text-gray-800 transition-all duration-300 hover:border-gray-400 hover:bg-gray-100 active:scale-95">
+                      <Link href={`/Course/${course.slug}`}>
+                        View Details
+                      </Link>
                     </button>
 
                   </div>
 
                 </div>
-
-                {/* BACK */}
-                <div className="absolute inset-0 rounded-[32px] bg-black text-white p-7 [transform:rotateY(180deg)] [backface-visibility:hidden] ">
-
-                  {/* SMALL ICON */}
-                  <div className="w-20 h-20 rounded-full overflow-hidden border border-black/10">
-
-                    <Image
-                      src={course.image}
-                      alt={course.title}
-                      width={80}
-                      height={80}
-                      className="object-cover w-full h-full"
-                    />
-
-                  </div>
-
-                  {/* TITLE */}
-                  <h3 className="text-3xl font-semibold mt-8 leading-tight">
-                    {course.title}
-                  </h3>
-
-                  {/* DESCRIPTION */}
-                  <p className="text-gray-300 leading-relaxed mt-6">
-                    {course.description}
-                  </p>
-
-                  {/* FEATURES */}
-                  <div className="space-y-4 mt-8">
-
-                    <div className="flex items-center gap-3">
-                      <div className="w-2 h-2 rounded-full bg-emerald-400" />
-                      <p className="text-gray-200">
-                        Weekly & Monthly Tests
-                      </p>
-                    </div>
-
-                    <div className="flex items-center gap-3">
-                      <div className="w-2 h-2 rounded-full bg-emerald-400" />
-                      <p className="text-gray-200">
-                        Personal Mentorship
-                      </p>
-                    </div>
-
-                    <div className="flex items-center gap-3">
-                      <div className="w-2 h-2 rounded-full bg-emerald-400" />
-                      <p className="text-gray-200">
-                        Revision & Extra Lectures
-                      </p>
-                    </div>
-
-                    <div className="flex items-center gap-3">
-                      <div className="w-2 h-2 rounded-full bg-emerald-400" />
-                      <p className="text-gray-200">
-                        Study Materials & Notes
-                      </p>
-                    </div>
-
-                  </div>
-
-                  {/* CTA */}
-                  <button className="mt-auto w-full py-4 rounded-full bg-white text-black font-semibold flex items-center justify-center gap-2 hover:bg-gray-200 transition-colors">
-
-                    Learn More
-
-                    <ArrowRight className="w-5 h-5" />
-
-                  </button>
-
-                </div>
-
               </div>
-
             </motion.div>
-
           ))}
 
         </motion.div>
