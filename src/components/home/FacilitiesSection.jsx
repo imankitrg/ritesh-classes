@@ -231,11 +231,11 @@ export default function FacilitiesSection() {
               {/* CTA */}
               <div className="flex flex-wrap gap-4 mt-12">
 
-                <button className="px-7 py-4 rounded-full bg-black text-white font-medium hover:bg-red-700 hover:text-white transition-all">
+                <button className="px-7 py-4 rounded-full bg-black text-white font-medium hover:bg-indigo-600 hover:text-white transition-all">
                   Book Free Demo
                 </button>
 
-                <button className="px-7 py-4 rounded-full border border-yellow-400 text-yellow-400   font-medium hover:bg-yellow-400 hover:text-white transition-all">
+                <button className="px-7 py-4 rounded-full border bg-black text-white   font-medium hover:bg-indigo-600 hover:text-white transition-all">
                   Explore Courses
                 </button>
 

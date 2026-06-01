@@ -164,8 +164,8 @@ export default function TrustSection() {
                         </h3>
                       </div>
 
-                      <button className="px-6 py-3 rounded-full bg-black text-white font-medium hover:bg-red-500 transition-colors">
-                        <Link href="/">Book Demo</Link>
+                      <button className="px-6 py-3 rounded-full bg-black text-white font-medium hover:bg-indigo-600 transition-colors">
+                        <Link href="/Admission">Book Demo</Link>
                       </button>
 
                     </div>
@@ -248,7 +248,7 @@ export default function TrustSection() {
                       <a
                         href="https://wa.me/918104837019"
                         target="_blank"
-                        className="flex-1 min-w-[180px] px-6 py-4 rounded-2xl bg-green-500 hover:bg-yellow-400 transition-colors flex items-center justify-center gap-3 font-semibold"
+                        className="flex-1 min-w-[180px] px-6 py-4 rounded-2xl bg-black text-white hover:bg-indigo-600 transition-colors flex items-center justify-center gap-3 font-semibold"
                       >
                         <FaWhatsapp className="text-2xl" />
                         WhatsApp
@@ -256,7 +256,7 @@ export default function TrustSection() {
 
                       <a
                         href="tel:8104837019"
-                        className="flex-1 min-w-[180px] px-6 py-4 rounded-2xl bg-black text-white hover:bg-red-500 transition-colors flex items-center justify-center gap-3 font-semibold"
+                        className="flex-1 min-w-[180px] px-6 py-4 rounded-2xl bg-black text-white hover:bg-indigo-600 transition-colors flex items-center justify-center gap-3 font-semibold"
                       >
                         <MdCall className="text-2xl" />
                         Call Now

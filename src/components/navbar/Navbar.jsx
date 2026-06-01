@@ -42,55 +42,55 @@ export default function Navbar() {
         <div className="hidden md:flex items-center gap-8">
           <Link
             href="/"
-            className="text-gray-600 hover:text-black transition-colors text-sm font-medium"
+            className="text-black hover:text-indigo-600 transition-colors text-sm font-medium"
           >
             Home
           </Link>
 
           <Link
             href="/Course"
-            className="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-50"
+            className="text-black hover:text-indigo-600 transition-colors text-sm font-medium"
           >
             Courses
           </Link>
 
           <Link
             href="/About"
-            className="text-gray-600 hover:text-black transition-colors text-sm font-medium"
+            className="text-black hover:text-indigo-600 transition-colors text-sm font-medium"
           >
             About
           </Link>
 
           <Link
             href="/Admission"
-            className="text-gray-600 hover:text-black transition-colors text-sm font-medium"
+            className="text-black hover:text-indigo-600 transition-colors text-sm font-medium"
           >
             Admission
           </Link>
 
           <Link
             href="/Contact"
-            className="text-gray-600 hover:text-black transition-colors text-sm font-medium"
+            className="text-black hover:text-indigo-600 transition-colors text-sm font-medium"
           >
             Contact
           </Link>
           <Link
             href="/Result"
-            className="text-gray-600 hover:text-black transition-colors text-sm font-medium"
+            className="text-black hover:text-indigo-600 transition-colors text-sm font-medium"
           >
             Result
           </Link>
 
           <Link
             href="/Gallery"
-            className="text-gray-600 hover:text-black transition-colors text-sm font-medium"
+            className="text-black hover:text-indigo-600 transition-colors text-sm font-medium"
           >
             Gallery
           </Link>
         </div>
 
         {/* CTA */}
-        <button className="px-5 py-2.5 rounded-full bg-black text-white text-sm font-medium hover:bg-gray-800 transition-colors">
+        <button className="px-5 py-2.5 rounded-full bg-black text-white text-sm font-medium hover:bg-indigo-600 transition-colors">
           Join Now
         </button>
       </div>

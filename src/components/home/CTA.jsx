@@ -138,7 +138,7 @@ export default function CTA() {
               {/* BUTTON */}
               <button
                 type="submit"
-                className="w-full py-4 bg-black hover:bg-gray-800 text-white font-semibold rounded-2xl flex justify-center items-center group transition-all"
+                className="w-full py-4 bg-black hover:bg-indigo-600 text-white font-semibold rounded-2xl flex justify-center items-center group transition-all"
               >
                 Book Demo Class
 
