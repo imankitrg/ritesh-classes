@@ -165,7 +165,7 @@ export default function TrustSection() {
                       </div>
 
                       <button className="px-6 py-3 rounded-full bg-black text-white font-medium hover:bg-indigo-600 transition-colors">
-                        <Link href="/Admission">Book Demo</Link>
+                        <Link href="/#demo-form">Book Demo</Link>
                       </button>
 
                     </div>
