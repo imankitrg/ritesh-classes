@@ -166,41 +166,64 @@ export default function Admission() {
     return Object.keys(tempErrors).length === 0;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (!validateForm()) return;
 
     setIsSubmitting(true);
-    // Simulate API Submission Delay
-    setTimeout(() => {
+    setErrors({});
+
+    try {
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}/api/admissions`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData),
+        }
+      );
+
+
+      const result = await response.json();
+
+      if (response.ok && result.success) {
+        setIsSubmitted(true);
+        setFormData({
+          studentName: "",
+          studentPhone: "",
+          whatsappPhone: "",
+          parentName: "",
+          parentPhone: "",
+          email: "",
+          course: "Select a Course",
+          board: "Select Board",
+          batch: "Select Batch",
+          mode: "Offline Classroom",
+          message: ""
+        });
+        setSameAsMobile(false);
+      } else {
+        setErrors({ submit: result.message || "Failed to submit admission form. Please try again." });
+      }
+    } catch (err) {
+      console.error("Submission error:", err);
+      setErrors({ submit: "Unable to connect to the server. Please check if backend is running." });
+    } finally {
       setIsSubmitting(false);
-      setIsSubmitted(true);
-      setFormData({
-        studentName: "",
-        studentPhone: "",
-        whatsappPhone: "",
-        parentName: "",
-        parentPhone: "",
-        email: "",
-        course: "Select a Course",
-        board: "Select Board",
-        batch: "Select Batch",
-        mode: "Offline Classroom",
-        message: ""
-      });
-      setSameAsMobile(false);
-    }, 1500);
+    }
   };
 
   return (
     <div className="bg-gray-50 min-h-screen text-gray-900 pb-20">
-      
+
       {/* HERO SECTION BANNER */}
       <section className="relative overflow-hidden bg-white border-b border-gray-100 py-16 lg:py-24">
         <div className="absolute inset-0 bg-gradient-to-br from-indigo-50/40 via-white to-rose-50/40 -z-10" />
         <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-8 text-center relative">
-          
-          <motion.div 
+
+          <motion.div
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
             className="inline-flex items-center gap-2 bg-indigo-50 border border-indigo-100 px-4 py-2 rounded-full text-indigo-700 text-xs sm:text-sm font-semibold mb-6 shadow-xs"
@@ -209,17 +232,17 @@ export default function Admission() {
             <span>Admissions Open for Session 2026-27</span>
           </motion.div>
 
-          <motion.h1 
+          <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
             className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-gray-900 tracking-tight leading-tight max-w-4xl mx-auto"
           >
-            Enroll in Mumbai's Premier <br/>
+            Enroll in Mumbai's Premier <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-black via-indigo-900 to-indigo-600">Coaching Institute</span>
           </motion.h1>
 
-          <motion.p 
+          <motion.p
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.2 }}
@@ -270,7 +293,7 @@ export default function Admission() {
       {/* FORM AND CHECKLIST SECTION */}
       <section className="py-12 max-w-7xl mx-auto px-6 sm:px-8 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
-          
+
           {/* Main Registration Form */}
           <div className="lg:col-span-8 bg-white border border-gray-100 rounded-[32px] p-8 sm:p-10 shadow-xs">
             <div>
@@ -287,20 +310,20 @@ export default function Admission() {
 
             <AnimatePresence mode="wait">
               {!isSubmitted ? (
-                <motion.form 
+                <motion.form
                   key="form"
-                  onSubmit={handleSubmit} 
+                  onSubmit={handleSubmit}
                   className="space-y-6 mt-8"
                   initial={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
                 >
-                  
+
                   {/* SECTION 1: Student Details */}
                   <div>
                     <h3 className="text-sm font-bold text-indigo-600 uppercase tracking-wider mb-4 border-b border-gray-100 pb-2">
                       1. Student Information
                     </h3>
-                    
+
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                       {/* Student Name */}
                       <div className="space-y-1.5">
@@ -311,9 +334,8 @@ export default function Admission() {
                           value={formData.studentName}
                           onChange={handleInputChange}
                           placeholder="e.g. Amit Singh"
-                          className={`w-full bg-gray-50 border rounded-2xl py-3.5 px-4 text-sm outline-none transition-all focus:bg-white focus:ring-2 focus:ring-indigo-500/20 ${
-                            errors.studentName ? "border-red-300 focus:ring-red-500/20 focus:border-red-500" : "border-gray-200 focus:border-indigo-500"
-                          }`}
+                          className={`w-full bg-gray-50 border rounded-2xl py-3.5 px-4 text-sm outline-none transition-all focus:bg-white focus:ring-2 focus:ring-indigo-500/20 ${errors.studentName ? "border-red-300 focus:ring-red-500/20 focus:border-red-500" : "border-gray-200 focus:border-indigo-500"
+                            }`}
                         />
                         {errors.studentName && <p className="text-red-500 text-[10px] font-semibold mt-1">{errors.studentName}</p>}
                       </div>
@@ -327,9 +349,8 @@ export default function Admission() {
                           value={formData.studentPhone}
                           onChange={handleInputChange}
                           placeholder="e.g. 9812345678"
-                          className={`w-full bg-gray-50 border rounded-2xl py-3.5 px-4 text-sm outline-none transition-all focus:bg-white focus:ring-2 focus:ring-indigo-500/20 ${
-                            errors.studentPhone ? "border-red-300 focus:ring-red-500/20 focus:border-red-500" : "border-gray-200 focus:border-indigo-500"
-                          }`}
+                          className={`w-full bg-gray-50 border rounded-2xl py-3.5 px-4 text-sm outline-none transition-all focus:bg-white focus:ring-2 focus:ring-indigo-500/20 ${errors.studentPhone ? "border-red-300 focus:ring-red-500/20 focus:border-red-500" : "border-gray-200 focus:border-indigo-500"
+                            }`}
                         />
                         {errors.studentPhone && <p className="text-red-500 text-[10px] font-semibold mt-1">{errors.studentPhone}</p>}
                       </div>
@@ -357,9 +378,8 @@ export default function Admission() {
                           onChange={handleInputChange}
                           disabled={sameAsMobile}
                           placeholder="e.g. 9812345678"
-                          className={`w-full bg-gray-50 border rounded-2xl py-3.5 px-4 text-sm outline-none transition-all focus:bg-white focus:ring-2 focus:ring-indigo-500/20 disabled:bg-gray-100 disabled:text-gray-500 ${
-                            errors.whatsappPhone ? "border-red-300 focus:ring-red-500/20 focus:border-red-500" : "border-gray-200 focus:border-indigo-500"
-                          }`}
+                          className={`w-full bg-gray-50 border rounded-2xl py-3.5 px-4 text-sm outline-none transition-all focus:bg-white focus:ring-2 focus:ring-indigo-500/20 disabled:bg-gray-100 disabled:text-gray-500 ${errors.whatsappPhone ? "border-red-300 focus:ring-red-500/20 focus:border-red-500" : "border-gray-200 focus:border-indigo-500"
+                            }`}
                         />
                         {errors.whatsappPhone && <p className="text-red-500 text-[10px] font-semibold mt-1">{errors.whatsappPhone}</p>}
                       </div>
@@ -384,7 +404,7 @@ export default function Admission() {
                     <h3 className="text-sm font-bold text-indigo-600 uppercase tracking-wider mb-4 border-b border-gray-100 pb-2">
                       2. Parent / Guardian Details
                     </h3>
-                    
+
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                       {/* Parent Name */}
                       <div className="space-y-1.5">
@@ -395,9 +415,8 @@ export default function Admission() {
                           value={formData.parentName}
                           onChange={handleInputChange}
                           placeholder="e.g. Rajkumar Singh"
-                          className={`w-full bg-gray-50 border rounded-2xl py-3.5 px-4 text-sm outline-none transition-all focus:bg-white focus:ring-2 focus:ring-indigo-500/20 ${
-                            errors.parentName ? "border-red-300 focus:ring-red-500/20 focus:border-red-500" : "border-gray-200 focus:border-indigo-500"
-                          }`}
+                          className={`w-full bg-gray-50 border rounded-2xl py-3.5 px-4 text-sm outline-none transition-all focus:bg-white focus:ring-2 focus:ring-indigo-500/20 ${errors.parentName ? "border-red-300 focus:ring-red-500/20 focus:border-red-500" : "border-gray-200 focus:border-indigo-500"
+                            }`}
                         />
                         {errors.parentName && <p className="text-red-500 text-[10px] font-semibold mt-1">{errors.parentName}</p>}
                       </div>
@@ -411,9 +430,8 @@ export default function Admission() {
                           value={formData.parentPhone}
                           onChange={handleInputChange}
                           placeholder="e.g. 9821767980"
-                          className={`w-full bg-gray-50 border rounded-2xl py-3.5 px-4 text-sm outline-none transition-all focus:bg-white focus:ring-2 focus:ring-indigo-500/20 ${
-                            errors.parentPhone ? "border-red-300 focus:ring-red-500/20 focus:border-red-500" : "border-gray-200 focus:border-indigo-500"
-                          }`}
+                          className={`w-full bg-gray-50 border rounded-2xl py-3.5 px-4 text-sm outline-none transition-all focus:bg-white focus:ring-2 focus:ring-indigo-500/20 ${errors.parentPhone ? "border-red-300 focus:ring-red-500/20 focus:border-red-500" : "border-gray-200 focus:border-indigo-500"
+                            }`}
                         />
                         {errors.parentPhone && <p className="text-red-500 text-[10px] font-semibold mt-1">{errors.parentPhone}</p>}
                       </div>
@@ -425,7 +443,7 @@ export default function Admission() {
                     <h3 className="text-sm font-bold text-indigo-600 uppercase tracking-wider mb-4 border-b border-gray-100 pb-2">
                       3. Course Stream & Schedule Preferences
                     </h3>
-                    
+
                     <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
                       {/* Target Course Select */}
                       <div className="space-y-1.5">
@@ -434,9 +452,8 @@ export default function Admission() {
                           name="course"
                           value={formData.course}
                           onChange={handleInputChange}
-                          className={`w-full bg-gray-50 border rounded-2xl py-3.5 px-4 text-sm outline-none transition-all focus:bg-white focus:ring-2 focus:ring-indigo-500/20 ${
-                            errors.course ? "border-red-300 focus:ring-red-500/20 focus:border-red-500" : "border-gray-200 focus:border-indigo-500"
-                          }`}
+                          className={`w-full bg-gray-50 border rounded-2xl py-3.5 px-4 text-sm outline-none transition-all focus:bg-white focus:ring-2 focus:ring-indigo-500/20 ${errors.course ? "border-red-300 focus:ring-red-500/20 focus:border-red-500" : "border-gray-200 focus:border-indigo-500"
+                            }`}
                         >
                           <option disabled value="Select a Course">Select Course</option>
                           <option value="Class 8-10 Foundation">8th to 10th Foundation</option>
@@ -455,9 +472,8 @@ export default function Admission() {
                           name="board"
                           value={formData.board}
                           onChange={handleInputChange}
-                          className={`w-full bg-gray-50 border rounded-2xl py-3.5 px-4 text-sm outline-none transition-all focus:bg-white focus:ring-2 focus:ring-indigo-500/20 ${
-                            errors.board ? "border-red-300 focus:ring-red-500/20 focus:border-red-500" : "border-gray-200 focus:border-indigo-500"
-                          }`}
+                          className={`w-full bg-gray-50 border rounded-2xl py-3.5 px-4 text-sm outline-none transition-all focus:bg-white focus:ring-2 focus:ring-indigo-500/20 ${errors.board ? "border-red-300 focus:ring-red-500/20 focus:border-red-500" : "border-gray-200 focus:border-indigo-500"
+                            }`}
                         >
                           <option disabled value="Select Board">Select Board</option>
                           <option value="SSC (Maharashtra State Board)">SSC (State Board)</option>
@@ -477,9 +493,8 @@ export default function Admission() {
                           name="batch"
                           value={formData.batch}
                           onChange={handleInputChange}
-                          className={`w-full bg-gray-50 border rounded-2xl py-3.5 px-4 text-sm outline-none transition-all focus:bg-white focus:ring-2 focus:ring-indigo-500/20 ${
-                            errors.batch ? "border-red-300 focus:ring-red-500/20 focus:border-red-500" : "border-gray-200 focus:border-indigo-500"
-                          }`}
+                          className={`w-full bg-gray-50 border rounded-2xl py-3.5 px-4 text-sm outline-none transition-all focus:bg-white focus:ring-2 focus:ring-indigo-500/20 ${errors.batch ? "border-red-300 focus:ring-red-500/20 focus:border-red-500" : "border-gray-200 focus:border-indigo-500"
+                            }`}
                         >
                           <option disabled value="Select Batch">Select Batch</option>
                           <option value="Morning Batch">Morning Batch (8:00 AM - 11:30 AM)</option>
@@ -536,6 +551,13 @@ export default function Admission() {
                     </div>
                   </div>
 
+
+                  {errors.submit && (
+                    <p className="text-red-500 text-xs font-semibold mt-1 text-center bg-red-50 border border-red-100 rounded-xl p-3">
+                      {errors.submit}
+                    </p>
+                  )}
+
                   {/* Submit Button */}
                   <button
                     type="submit"
@@ -581,7 +603,7 @@ export default function Admission() {
 
           {/* Coaching Policy & Document Checklists */}
           <div className="lg:col-span-4 space-y-6">
-            
+
             {/* Enrollment checklist */}
             <div className="bg-white border border-gray-100 rounded-[32px] p-6 sm:p-8 shadow-xs">
               <div className="flex items-center gap-2 text-indigo-600 text-xs font-bold uppercase tracking-wider mb-4">
@@ -592,7 +614,7 @@ export default function Admission() {
               <p className="text-gray-500 text-xs sm:text-sm mb-6 leading-relaxed">
                 Parents are requested to submit copies of these documents during center visit for final enrollment validation:
               </p>
-              
+
               <ul className="space-y-3.5">
                 {[
                   "2 Passport size photographs of student",
@@ -617,7 +639,7 @@ export default function Admission() {
                 <span>Why Study Here?</span>
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-4">Classes Excellence</h3>
-              
+
               <ul className="space-y-4">
                 {[
                   {
@@ -657,7 +679,7 @@ export default function Admission() {
       <section className="py-12 max-w-7xl mx-auto px-6 sm:px-8 lg:px-8">
         <div className="bg-black text-white rounded-[32px] p-8 sm:p-12 relative overflow-hidden shadow-lg">
           <div className="absolute inset-0 bg-gradient-to-r from-black via-indigo-950 to-indigo-900 opacity-90 -z-10" />
-          
+
           <div className="flex flex-col lg:flex-row items-center justify-between gap-8">
             <div className="max-w-xl text-center lg:text-left space-y-2">
               <span className="px-3 py-1 bg-white/10 border border-white/10 rounded-full text-indigo-300 text-xs font-bold uppercase tracking-wider">
@@ -670,7 +692,7 @@ export default function Admission() {
                 Connect directly with Prof. Ritesh Singh for quick fee breakdowns, batch schedules, or demo class bookings.
               </p>
             </div>
-            
+
             <div className="flex flex-col sm:flex-row gap-4 w-full lg:w-auto">
               <a
                 href="https://wa.me/918104837019"
@@ -709,7 +731,7 @@ export default function Admission() {
           {admissionFaqs.map((faq, idx) => {
             const isOpen = openFaqIdx === idx;
             return (
-              <div 
+              <div
                 key={idx}
                 className="border border-gray-200 rounded-2xl overflow-hidden bg-white transition-colors"
               >
