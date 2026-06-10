@@ -83,17 +83,17 @@ export default function TeachersSection() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"
         >
           {teachers.map((teacher) => (
             <motion.div
               key={teacher.id}
               variants={itemVariants}
-              whileHover={{ y: -8 }}
-              className="bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-all border border-gray-100 group"
+              whileHover={{ y: -6 }}
+              className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all border border-gray-100 group"
             >
               {/* Teacher Photo */}
-              <div className="relative w-full h-64 bg-gray-200 overflow-hidden">
+              <div className="relative w-full h-48 bg-gray-200 overflow-hidden">
                 <Image
                   src="/home/banner.webp"
                   alt={`Photo of ${teacher.name}`}
@@ -101,29 +101,29 @@ export default function TeachersSection() {
                   className="object-cover group-hover:scale-105 transition-transform duration-500"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-gray-900/60 to-transparent"></div>
-                <div className="absolute bottom-4 left-4 right-4">
-                  <h3 className="text-xl font-bold text-white mb-1">{teacher.name}</h3>
-                  <span className="inline-block px-3 py-1 bg-white/20 backdrop-blur-md rounded-full text-white text-xs font-medium">
+                <div className="absolute bottom-3 left-3 right-3">
+                  <h3 className="text-lg font-bold text-white mb-0.5">{teacher.name}</h3>
+                  <span className="inline-block px-2.5 py-0.5 bg-white/20 backdrop-blur-md rounded-full text-white text-[10px] font-medium">
                     {teacher.subject} Expert
                   </span>
                 </div>
               </div>
 
               {/* Teacher Info */}
-              <div className="p-6 space-y-4">
+              <div className="p-4 space-y-3">
                 <div className="flex items-start text-gray-600">
-                  <GraduationCap className="w-5 h-5 mr-3 mt-0.5 flex-shrink-0 text-indigo-500" />
+                  <GraduationCap className="w-4 h-4 mr-2.5 mt-0.5 flex-shrink-0 text-indigo-500" />
                   <div>
-                    <p className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-0.5">Qualification</p>
-                    <p className="font-medium text-gray-900">{teacher.qualification}</p>
+                    <p className="text-[10px] font-semibold text-gray-400 uppercase tracking-wider mb-0.5">Qualification</p>
+                    <p className="text-xs font-semibold text-gray-900">{teacher.qualification}</p>
                   </div>
                 </div>
 
                 <div className="flex items-start text-gray-600">
-                  <Briefcase className="w-5 h-5 mr-3 mt-0.5 flex-shrink-0 text-emerald-500" />
+                  <Briefcase className="w-4 h-4 mr-2.5 mt-0.5 flex-shrink-0 text-emerald-500" />
                   <div>
-                    <p className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-0.5">Experience</p>
-                    <p className="font-medium text-gray-900">{teacher.experience}</p>
+                    <p className="text-[10px] font-semibold text-gray-400 uppercase tracking-wider mb-0.5">Experience</p>
+                    <p className="text-xs font-semibold text-gray-900">{teacher.experience}</p>
                   </div>
                 </div>
               </div>
